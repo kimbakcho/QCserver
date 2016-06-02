@@ -23,6 +23,10 @@ public:
     QSqlDatabase litedb;
     ~Serversetform();
 
+private slots:
+
+    void on_applybtn_clicked();
+
 private:
     Ui::Serversetform *ui;
 };

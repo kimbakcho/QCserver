@@ -22,3 +22,13 @@ Serversetform::~Serversetform()
 {
     delete ui;
 }
+
+
+void Serversetform::on_applybtn_clicked()
+{
+    QSqlQuery query2(litedb);
+    QString str = QString("update systemset set remoteserverip = \'%1\';").arg(ui->remoteserverip->text());
+    query2.exec(str);
+    str =  QString("update systemset set remoteserverport = \'%1\';").arg(ui->remoteserverport->text());
+    query2.exec(str);
+}
