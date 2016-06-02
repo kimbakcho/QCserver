@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network ftp
+QT       += core gui network sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,12 +14,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    mslotitem.cpp
+    mslotitem.cpp \
+    serversetform.cpp
 
 HEADERS  += mainwindow.h \
-    mslotitem.h
+    mslotitem.h \
+    serversetform.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    serversetform.ui
 
 RESOURCES += \
     Res.qrc

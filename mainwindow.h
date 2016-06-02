@@ -9,7 +9,12 @@
 #define ITEMSETUP 5
 #include <QMainWindow>
 #include <QMap>
+#include <QDebug>
 #include "mslotitem.h"
+#include "serversetform.h"
+#include <QSqlDatabase>
+#include <QSqlQuery>
+
 namespace Ui {
 class MainWindow;
 }
@@ -22,12 +27,20 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     QMap<QString,mslotitem *> *itemmap;
     void mainwidgetinit();
+    QSqlDatabase mdb;
+    QSqlDatabase litedb;
+    Serversetform *serversetform;
+
     ~MainWindow();
 
 private slots:
 
 
     void on_ipadderbtn_clicked();
+
+    void on_actionStart_triggered();
+
+    void on_actionSetting_triggered();
 
 private:
     Ui::MainWindow *ui;

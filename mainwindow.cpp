@@ -5,8 +5,22 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    mdb =QSqlDatabase::addDatabase("QMYSQL","remotedb");
+    litedb = QSqlDatabase::addDatabase("QSQLITE","localdb");
+
     ui->setupUi(this);
     mainwidgetinit();
+
+    litedb.setDatabaseName("local.db");
+    if(!litedb.open()){
+        qDebug()<<"localdb open fail";
+    }
+    QSqlQuery litequery1(litedb);
+    litequery1.exec("CREATE TABLE  IF NOT EXISTS systemset (remoteserverip TEXT, remoteserverport TEXT);");
+    litequery1.exec("insert into systemset(remoteserverip,remoteserverport ) select \'127.0.0.1\',\'3306\' where not exists(select * from systemset);");
+    serversetform = new Serversetform();
+
+
 }
 MainWindow::~MainWindow()
 {
@@ -37,4 +51,14 @@ void MainWindow::on_ipadderbtn_clicked()
     ui->maintablewidget->setCellWidget(countnumber,ITEMNAME,temp_item->machinename);
     ui->maintablewidget->setCellWidget(countnumber,ITEMTYPE,temp_item->type);
     ui->maintablewidget->setCellWidget(countnumber,ITEMSETUP,temp_item->setupbtn);
+}
+
+void MainWindow::on_actionStart_triggered()
+{
+
+}
+
+void MainWindow::on_actionSetting_triggered()
+{
+    serversetform->show();
 }
