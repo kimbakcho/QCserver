@@ -15,9 +15,9 @@ mslotitem::mslotitem(QString iptext, QString machinenametext, QObject *parent) :
     setupbtn = new QPushButton(tr("설치"));
     connectlabel->setTextFormat(Qt::RichText);
     connectlabel->setText(tr("<img src=\":/icon/icon/light-bulb_red.png\">  disconnect"));
-    type->addItem(tr("gefranseven"));
-    type->addItem(tr("es600"));
-    type->addItem(tr("BNR"));
+    type->addItem("gefranseven");
+    type->addItem("es600");
+    type->addItem("BNR");
     status->setTextFormat(Qt::RichText);
     status->setText(tr("<img src=\":/icon/icon/stop.png\">  STOP"));
     QString quertstr2 =  QString("INSERT INTO Systeminfo ("
@@ -45,12 +45,17 @@ mslotitem::mslotitem(QString iptext, QString machinenametext, QObject *parent) :
     mysqlquery1.exec(quertstr2);
 
     quertstr2 = QString("select ITEMTYPE from Systeminfo where machine_name = '%1'").arg(machinenametext);
-    qDebug()<<quertstr2;
+
     mysqlquery1.exec(quertstr2);
     if(mysqlquery1.next()){
         type->setCurrentText(mysqlquery1.value("ITEMTYPE").toString());
     }
+    maintimer.setInterval(MAINTIMERTIME);
+    bnr_base_logic = new Bnr_base_locgic(this);
+
     connect(type,SIGNAL(currentTextChanged(QString)),this,SLOT(typechange(QString)));
+    connect(&maintimer,SIGNAL(timeout()),this,SLOT(maintimer_timeout()));
+
 }
 void mslotitem::typechange(QString data){
     QSqlQuery mysqlquery1(remotedb);
@@ -62,3 +67,20 @@ void mslotitem::typechange(QString data){
 
     mysqlquery1.exec(quertstr2);
 }
+//maintimer loop
+void mslotitem::maintimer_timeout(){
+
+    if(type->currentText().compare("BNR")==0){
+        if(!bnr_base_logic->initflag){
+            bnr_base_logic->init();
+        }
+        //loop logic
+        bnr_base_logic->loop();
+    }else if(type->currentText().compare("gefranseven")==0){
+
+    }else if(type->currentText().compare("es600")==0){
+
+    }
+
+}
+

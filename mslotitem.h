@@ -15,6 +15,9 @@
 #include <QSqlDatabase>
 #include <QDebug>
 #include <QSqlQuery>
+#include <QTimer>
+#include <bnr_base_locgic.h>
+#include <globalheader.h>
 
 class mslotitem : public QObject
 {
@@ -30,12 +33,15 @@ public:
     QString iptext;
     QSqlDatabase remotedb;
     QString machinenametext;
+    QTimer maintimer;
+    Bnr_base_locgic *bnr_base_logic;
 
 
 signals:
 
 public slots:
     void typechange(QString data);
+    void maintimer_timeout();
 
 };
 

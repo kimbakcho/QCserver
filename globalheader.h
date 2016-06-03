@@ -6,4 +6,13 @@
 #define MOLDINFOVERSION 1
 #define TEMPTABLEVERSION 1
 
+#define MAINTIMERTIME 1000
+
+#define ITEMCONNECT 0
+#define ITEMSTATUS 1
+#define ITEMIP 2
+#define ITEMNAME 3
+#define ITEMTYPE 4
+#define ITEMSETUP 5
+
 #endif // GLOBALHEADER_H

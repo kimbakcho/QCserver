@@ -15,12 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     mslotitem.cpp \
-    serversetform.cpp
+    serversetform.cpp \
+    bnr_base_locgic.cpp
 
 HEADERS  += mainwindow.h \
     mslotitem.h \
     serversetform.h \
-    globalheader.h
+    globalheader.h \
+    bnr_base_locgic.h
 
 FORMS    += mainwindow.ui \
     serversetform.ui

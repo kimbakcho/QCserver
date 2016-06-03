@@ -54,7 +54,7 @@ void MainWindow::remote_init_read_machineinfo(){
          mslotitem *temp_item = new mslotitem(mysqlquery1.value("ipaddress").toString(),
                                               mysqlquery1.value("machine_name").toString());
 
-         itemmap->insert(temp_item->iptext,temp_item);
+         itemmap->insert(temp_item->machinenametext,temp_item);
          ui->maintablewidget->setCellWidget(countnumber,ITEMCONNECT,temp_item->connectlabel);
          ui->maintablewidget->setCellWidget(countnumber,ITEMSTATUS,temp_item->status);
          ui->maintablewidget->setCellWidget(countnumber,ITEMIP,temp_item->ip);
@@ -86,7 +86,7 @@ void MainWindow::on_ipadderbtn_clicked()
     ui->maintablewidget->insertRow(ui->maintablewidget->rowCount());
     int countnumber = ui->maintablewidget->rowCount() - 1;
     mslotitem *temp_item = new mslotitem(ui->QLaddip->text(),ui->QLaddmachinename->text());
-    itemmap->insert(temp_item->iptext,temp_item);
+    itemmap->insert(temp_item->machinenametext,temp_item);
     ui->maintablewidget->setCellWidget(countnumber,ITEMCONNECT,temp_item->connectlabel);
     ui->maintablewidget->setCellWidget(countnumber,ITEMSTATUS,temp_item->status);
     ui->maintablewidget->setCellWidget(countnumber,ITEMIP,temp_item->ip);
@@ -340,10 +340,19 @@ void MainWindow::on_serverstartbtn_clicked()
 {
     ui->ipadderbtn->setEnabled(false);
     ui->deletebtn->setEnabled(false);
+    QList<mslotitem *> valuelist = itemmap->values();
+    for(int i=0;i<valuelist.size();i++){
+        valuelist.at(i)->maintimer.start();
+    }
+
 }
 
 void MainWindow::on_serverstopbtn_clicked()
 {
     ui->ipadderbtn->setEnabled(true);
     ui->deletebtn->setEnabled(true);
+    QList<mslotitem *> valuelist = itemmap->values();
+    for(int i=0;i<valuelist.size();i++){
+        valuelist.at(i)->maintimer.stop();
+    }
 }
