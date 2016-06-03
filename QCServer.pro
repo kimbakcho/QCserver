@@ -19,7 +19,8 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     mslotitem.h \
-    serversetform.h
+    serversetform.h \
+    globalheader.h
 
 FORMS    += mainwindow.ui \
     serversetform.ui

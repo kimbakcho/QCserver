@@ -14,6 +14,7 @@
 #include "serversetform.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <globalheader.h>
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +31,11 @@ public:
     QSqlDatabase mdb;
     QSqlDatabase litedb;
     Serversetform *serversetform;
+    int cellcurrentrow,cellcurrentcolumn;
+    void litesql_init();
+    void remotesql_connect();
+    void remotesql_init();
+    void remote_init_read_machineinfo();
 
     ~MainWindow();
 
@@ -41,6 +47,14 @@ private slots:
     void on_actionStart_triggered();
 
     void on_actionSetting_triggered();
+
+    void on_deletebtn_clicked();
+
+    void on_maintablewidget_cellClicked(int row, int column);
+
+    void on_serverstartbtn_clicked();
+
+    void on_serverstopbtn_clicked();
 
 private:
     Ui::MainWindow *ui;

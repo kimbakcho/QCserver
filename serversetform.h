@@ -9,7 +9,6 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
-
 namespace Ui {
 class Serversetform;
 }
