@@ -2,6 +2,7 @@
 #define BNR_BASE_LOCGIC_H
 
 #include <QObject>
+#include <QFtp>
 
 class Bnr_base_locgic : public QObject
 {

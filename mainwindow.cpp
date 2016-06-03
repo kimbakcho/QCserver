@@ -159,10 +159,12 @@ void MainWindow::remotesql_connect(){
 void MainWindow::remotesql_init(){
     QSqlQuery mysqlquery1(mdb);
     mysqlquery1.exec("CREATE TABLE `DBvsersion` ("
+                         "`id` INT(11) NOT NULL DEFAULT '1',"
                          "`systeminfoversion` INT(11) NULL DEFAULT NULL,"
                          "`temp_tableversion` INT(11) NULL DEFAULT NULL,"
                          "`mold_infoversion` INT(11) NULL DEFAULT NULL,"
-                         "`DBversion` INT(11) NULL DEFAULT NULL"
+                         "`DBversion` INT(11) NULL DEFAULT NULL,"
+                         "PRIMARY KEY (`id`)"
                      ")"
                      "COLLATE='utf8_bin'"
                      "ENGINE=InnoDB"
@@ -312,7 +314,7 @@ void MainWindow::remotesql_init(){
                            .arg(TEMPTABLEVERSION)
                            .arg(MOLDINFOVERSION)
                            .arg(DBVERSION);
-
+    qDebug()<<strquery;
     mysqlquery1.exec(strquery);
 }
 
