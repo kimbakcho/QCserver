@@ -153,7 +153,6 @@ void MainWindow::remotesql_connect(){
     }else {
         ui->logtext->append("remtoe DB open");
     }
-
 }
 
 void MainWindow::remotesql_init(){
