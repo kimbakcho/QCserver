@@ -21,8 +21,6 @@ Serversetform::Serversetform(QWidget *parent) :
     ui->remoteserverusername->setText(remoteusername);
     QString remoteuserpassword = query1.value("remoteserveruserpassword").toString();
     ui->remoteserveruserpassword->setText(remoteuserpassword);
-
-
 }
 
 Serversetform::~Serversetform()
