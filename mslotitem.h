@@ -35,6 +35,9 @@ public:
     QString machinenametext;
     QTimer maintimer;
     Bnr_base_locgic *bnr_base_logic;
+    void set_connectlabel_text(QString data);
+    void set_status_text(QString data);
+
 
 
 signals:
@@ -42,6 +45,7 @@ signals:
 public slots:
     void typechange(QString data);
     void maintimer_timeout();
+
 
 };
 
