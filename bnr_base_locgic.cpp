@@ -41,7 +41,7 @@ void Bnr_base_locgic::managerfinished(QNetworkReply *reply){
                 tempbnrdata = new BNRvalue();
                 tempbnrdata->name = name;
                 datamap->insert(name,tempbnrdata);
-            }else {
+            } else {
                 tempbnrdata = datamap->value(name);
             }
             QString dom  = QString(".value");

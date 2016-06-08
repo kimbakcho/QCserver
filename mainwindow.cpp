@@ -344,8 +344,10 @@ void MainWindow::remotesql_init(){
                            .arg(TEMPTABLEVERSION)
                            .arg(MOLDINFOVERSION)
                            .arg(DBVERSION);
-    //qDebug()<<strquery;
+    qDebug()<<strquery;
     mysqlquery1.exec(strquery);
+
+
 }
 
 void MainWindow::on_deletebtn_clicked()
