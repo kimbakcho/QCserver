@@ -344,8 +344,19 @@ void MainWindow::remotesql_init(){
                            .arg(TEMPTABLEVERSION)
                            .arg(MOLDINFOVERSION)
                            .arg(DBVERSION);
-    qDebug()<<strquery;
+    //qDebug()<<strquery;
     mysqlquery1.exec(strquery);
+
+    mysqlquery1.exec("CREATE TABLE `works` ("
+                         "`name` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_bin',"
+                         "`time` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_bin',"
+                         "UNIQUE INDEX `name` (`name`)"
+                     ")"
+                     "COLLATE='utf8_bin'"
+                     "ENGINE=InnoDB"
+                     ";"
+                    );
+
 
 
 }
