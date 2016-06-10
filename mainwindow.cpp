@@ -196,7 +196,6 @@ void MainWindow::remotesql_init(){
                      ";"
                    );
     mysqlquery1.exec("CREATE TABLE `mold_info` ("
-                         "`id` INT(11) NOT NULL DEFAULT '1',"
                          "`mold_name` VARCHAR(50) NULL DEFAULT NULL COMMENT '금형이름',"
                          "`cabity_count` INT(11) NULL DEFAULT '0' COMMENT '캐비티수',"
                          "`item_name` TEXT NULL DEFAULT NULL COMMENT '제품이름',"
