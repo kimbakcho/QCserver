@@ -17,7 +17,7 @@ mslotitem::mslotitem(QString iptext, QString machinenametext, QObject *parent) :
     connectlabel->setText(tr("<img src=\":/icon/icon/light-bulb_red.png\">  disconnect"));
     type->addItem("gefranseven");
     type->addItem("es600");
-    type->addItem("BNR");
+    type->addItem("BNR/TAC1XX11");
     status->setTextFormat(Qt::RichText);
     status->setText(tr("<img src=\":/icon/icon/stop.png\">  STOP"));
     QString quertstr2 =  QString("INSERT INTO Systeminfo ("
@@ -95,7 +95,7 @@ void mslotitem::typechange(QString data){
 //maintimer loop
 void mslotitem::maintimer_timeout(){
 
-    if(type->currentText().compare("BNR")==0){
+    if(type->currentText().split("/").at(0).compare("BNR")==0){
         if(!bnr_base_logic->initflag){
             bnr_base_logic->init();
         }

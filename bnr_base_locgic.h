@@ -40,6 +40,8 @@ public:
     QSqlDatabase remotedb;
 
     void requst_read_value(QString ip, QString address);
+    void url_bnrbaseloop();
+    void url_tac1xx11warningloop();
 
 signals:
 
