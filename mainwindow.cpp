@@ -197,7 +197,6 @@ void MainWindow::remotesql_init(){
                    );
     mysqlquery1.exec("CREATE TABLE `mold_info` ("
                          "`mold_name` VARCHAR(50) NULL DEFAULT NULL COMMENT '금형이름',"
-                         "`cabity_count` INT(11) NULL DEFAULT '0' COMMENT '캐비티수',"
                          "`item_name` TEXT NULL DEFAULT NULL COMMENT '제품이름',"
                          "`item_code` TEXT NULL DEFAULT NULL COMMENT '제품코드',"
                          "UNIQUE INDEX `mold_name` (`mold_name`)"
@@ -347,9 +346,10 @@ void MainWindow::remotesql_init(){
     mysqlquery1.exec(strquery);
 
     mysqlquery1.exec("CREATE TABLE `works` ("
+                         "`number` VARCHAR(50) NOT NULL DEFAULT '0' COLLATE 'utf8_bin',"
                          "`name` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_bin',"
                          "`time` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_bin',"
-                         "UNIQUE INDEX `name` (`name`)"
+                         "UNIQUE INDEX `number` (`number`)"
                      ")"
                      "COLLATE='utf8_bin'"
                      "ENGINE=InnoDB"

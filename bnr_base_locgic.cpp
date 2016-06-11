@@ -159,9 +159,46 @@ void Bnr_base_locgic::managerfinished(QNetworkReply *reply){
                 .arg(datamap->value("REC_DATA.HC.Oil.ST")->value)     //temp21_set //oil
                 .arg('0') //temp21_up
                 .arg('0') //temp21_down
-                .arg(datamap->value("ACT_DATA.System.ATOil")->value)        //temp21_real//il
+                .arg(datamap->value("ACT_DATA.System.ATOil")->value)        //temp21_real//
                 .arg(mancine_name)
                 ;
+        mysqlquery1.exec(update_temp);
+
+        double object_count = datamap->value("udTotalProd_setpcs")->value.toDouble();
+        double production_count = datamap->value("udTotalProd_actpcs")->value.toDouble();
+        double achievemen_rate = (production_count/object_count)*100.0;
+        int cycle_time = datamap->value("ACT_DATA.System.AtCycleTime")->value.toInt()/100;
+        QTime time;
+        time.setHMS(0,0,0);
+        QTime cycletime;
+        cycletime = time.addSecs(cycle_time);
+
+        int mode = datamap->value("MMI_DATA.Mode")->value.toInt();
+        QString modestr;
+        if(mode == 1){
+            modestr=tr("전자동");
+        }else if(mode ==2){
+            modestr=tr("반자동");
+        }else if(mode ==4){
+            modestr=tr("수동");
+        }else if(mode ==5){
+            modestr=tr("금형취부");
+        }
+
+        update_temp = QString("UPDATE Systeminfo SET production_count = %1,"
+                              "object_count = %2,"
+                              "cabity = %3,"
+                              "achievemen_rate = %4,"
+                              "cycle_time = \'%5\',"
+                              "run_mode = \'%6\' "
+                              "where machine_name = \'%7\'")
+                                .arg(datamap->value("udTotalProd_actpcs")->value)
+                                .arg(datamap->value("udTotalProd_setpcs")->value)
+                                .arg(datamap->value("uiNoOfCavity")->value)
+                                .arg(achievemen_rate)
+                                .arg(cycletime.toString("hh:mm:ss"))
+                                .arg(modestr)
+                                .arg(mancine_name);
         mysqlquery1.exec(update_temp);
 
         parent_item->set_connectlabel_text("<img src=\":/icon/icon/play-button16.png\">  connect");
